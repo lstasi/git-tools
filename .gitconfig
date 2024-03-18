@@ -1,0 +1,29 @@
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	h = log --pretty=format:\"%Cgreen%h %ad%Creset %s%Cgreen%d%Creset [%an]\" --graph --date=short
+	ha = log --pretty=format:\"%Cgreen%h %ad%Creset %s%Cgreen%d%Creset [%an]\" --graph --date=short --all
+[user]
+	name = Leandro Stasi
+	email = leandro.stasi@jobandtalent.com
+	signingkey = /home/leandro/.ssh/id_ed25519.pub
+[core]
+	excludesFile = ~/.gitignore
+	autocrlf = input
+[push]
+	default = current
+	autoSetupRemote = true
+[pull]
+	ff = only
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

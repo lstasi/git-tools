@@ -1,0 +1,10 @@
+.ruby-version
+.idea/
+.irb_history
+.vscode/
+.python-version
+.DS_Store
+.iml
+**/.iml
+Gemfile.local
+Gemfile.local.lock

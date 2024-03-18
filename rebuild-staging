@@ -1,0 +1,22 @@
+#!/bin/bash
+
+git checkout staging
+git checkout -b "${branch}_backup_${timestamp}"
+git checkout master
+git pull origin master
+git branch -D staging
+git checkout -b staging
+
+# List all PRs and filter by label
+# Retrieve the PRs with the specified label in JSON format
+prs=$(gh pr list --search 'is:open label:"testing staging"' --json number |jq -r '.[].number')
+
+# reverse the order of the PRs
+prs=$(echo $prs | tr " " "\n" | tac)
+# Loop through the PRs and merge each one
+# get the branch and merge it into the staging branch
+for pr in $prs; do
+  branch=$(gh pr view $pr --json headRefName |jq -r '.headRefName')
+  echo "Merge PR: $pr branch: $branch into staging..."
+  git merge --no-edit --quiet origin/$branch
+done
