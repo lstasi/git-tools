@@ -8,10 +8,7 @@ timestamp=$(date +%Y%m%d%H%M%S)
 
 # Backup the branch
 git checkout $branch
-git checkout -b "${branch}_backup_${timestamp}"
+git branch -m "${branch}_backup_${timestamp}"
 
 # Delete the original branch
-git branch -d $branch
-
-# Check out the original branch again from the remote repository
 git checkout $branch
