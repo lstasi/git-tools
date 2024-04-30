@@ -1,7 +1,11 @@
 #!/bin/bash
+set -e
+timestamp=$(date +%s)
 
 git checkout staging
-git checkout -b "${branch}_backup_${timestamp}"
+echo "Backup staging branch...staging_backup_${timestamp}"
+git checkout -b "staging_backup_${timestamp}"
+
 git checkout master
 git pull origin master
 git branch -D staging
